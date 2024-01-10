@@ -14,12 +14,15 @@ router.use((req, res, next) => {
 //You need to mount the router on a path in your main application (app) using app.use().
 //like app.use("/api", router);
 router.use((req, res, next) => {
+  // a middleware function with no mount path. This code is executed for every request to the router
   console.log("This middleware is specific to the router.");
   next();
 });
-//-----------used the router
-app.use(router); //path is optional.
+//-----------use the router
+//app.use("/", router); //path is optional.
 //If you use app.use(router) without specifying a mount path, the router will be mounted at the root path ("/") by default.
+app.use("/api", router);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
