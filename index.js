@@ -1,10 +1,17 @@
 const express = require("express");
 const app = express();
+const router = express.Router(); //this is for router-level middleware
 app.use(express.json());
 app.use((req, res, next) => {
   console.log("Time: ", Date.now());
   next();
 });
+router.use((req, res, next) => {
+  console.log("Time 2: from router", Date.now());
+  next();
+});
+//I defined the router, but I haven't actually used this router in the application.
+//You need to mount the router on a path in your main application (app) using app.use().
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
