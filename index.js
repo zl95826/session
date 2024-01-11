@@ -1,4 +1,5 @@
 const express = require("express");
+const apiRouter = require("./apiRouter");
 const app = express();
 const router = express.Router(); //this is for router-level middleware
 app.use(express.json());
@@ -21,7 +22,8 @@ router.use((req, res, next) => {
 //-----------use the router
 //app.use("/", router); //path is optional.
 //If you use app.use(router) without specifying a mount path, the router will be mounted at the root path ("/") by default.
-app.use("/api", router);
+app.use("/test", router);
+app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
