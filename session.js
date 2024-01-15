@@ -1,10 +1,12 @@
 const express = require("express");
 const session = require("express-session");
+const env = require("dotenv");
 const app = express();
+env.config();
 app.use(
   session({
-    secret: "keyboard cat",
-    name: "test", //The name of the session ID cookie to set in the response (and read from in the request).
+    secret: process.env.SESSION_SEC,
+    //name: "test", //The name of the session ID cookie to set in the response (and read from in the request).
     resave: false, //Controls if the session should be saved even if it wasn't modified.
     saveUnititialized: false,
     cookie: { maxAge: 60000 },
@@ -16,7 +18,7 @@ app.use(
   })
 );
 app.get("/", (req, res) => {
-  console.log(req.session.view);
+  console.log(req.session.view, req.session);
   if (req.session.views) {
     req.session.views++;
     res.setHeader("Content-Type", "text/html");
