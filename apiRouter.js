@@ -22,7 +22,7 @@ apiRouter.get("/test", (req, res) => {
 
 module.exports = apiRouter;
 //Routers are instances of express.Router()
-//and can be mounted at specific paths within the main application.
+//and can be mounted at specific paths within the main application. like:
 //app.use("/api", apiRouter);
 
 //A router is a way to modularize and organize routes and middleware in Express.
